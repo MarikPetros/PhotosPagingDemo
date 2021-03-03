@@ -4,6 +4,9 @@ import android.view.ViewGroup
 import androidx.paging.LoadState
 import androidx.paging.LoadStateAdapter
 
+/**
+ *  Adapter for tracking loading state
+ */
 class PhotosLoadStateAdapter(private val retry: () -> Unit) :
     LoadStateAdapter<PhotosLoadStateViewHolder>() {
     override fun onBindViewHolder(holder: PhotosLoadStateViewHolder, loadState: LoadState) {
