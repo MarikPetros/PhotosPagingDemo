@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">GetPhotos</string>
+    <string name="title_login">Логин</string>
+    <string name="title_photos">Картинки</string>
+    <string name="hint_login">Логин</string>
+    <string name="hint_password">Пароль</string>
+    <string name="login">Войти</string>
+    <string name="retry">Retry</string>
+    <string name="loading">Loading</string>
+    <string name="enter_valid_mail">Введите действительную почту.</string>
+    <string name="password_error_message">Пороль должен содежать не менее 6 букв, как минимум одну строчную букву, одну заглавную букву и одну цыфру.</string>
+</resources>
