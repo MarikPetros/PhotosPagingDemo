@@ -9,15 +9,8 @@ import com.marik.getphotos.core.model.Photo
 import kotlinx.coroutines.flow.Flow
 
 class PhotosViewModel(private val getPhotos: GetPhotos) : ViewModel() {
-    private var currentSearchResult: Flow<PagingData<Photo>>? = null
-
     fun getPhotosPage(): Flow<PagingData<Photo>> {
-        val lastResult = currentSearchResult
-
-        val newResult: Flow<PagingData<Photo>> = getPhotos()
+        return this.getPhotos()
             .cachedIn(viewModelScope)
-        currentSearchResult = newResult
-        return newResult
     }
-
 }
