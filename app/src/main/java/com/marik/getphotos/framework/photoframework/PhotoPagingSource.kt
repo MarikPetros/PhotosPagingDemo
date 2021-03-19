@@ -34,6 +34,6 @@ class PhotoPagingSource(private val photoService: PhotoService) : PagingSource<I
     }
 
     override fun getRefreshKey(state: PagingState<Int, Photo>): Int? {
-        return 0
+        return null
     }
 }
