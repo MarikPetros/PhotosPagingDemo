@@ -11,7 +11,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.marik.getphotos.R
 import com.marik.getphotos.core.model.Weather
 import kotlinx.coroutines.launch
-import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginFragment : Fragment() {
 

@@ -13,12 +13,11 @@ import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.marik.getphotos.R
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChangedBy
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.launch
-import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class PhotosFragment : Fragment() {
 
@@ -28,9 +27,7 @@ class PhotosFragment : Fragment() {
     private lateinit var progressBar: ProgressBar
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_photos, container, false)
         recyclerView = root.findViewById(R.id.rv_photos)
@@ -60,9 +57,8 @@ class PhotosFragment : Fragment() {
 
     private fun setRecyclerView() {
         recyclerView.layoutManager = LinearLayoutManager(activity)
-        recyclerView.adapter = adapter.withLoadStateFooter(
-            footer = PhotosLoadStateAdapter { adapter.retry() }
-        )
+        recyclerView.adapter =
+            adapter.withLoadStateFooter(footer = PhotosLoadStateAdapter { adapter.retry() })
         adapter.addLoadStateListener { loadState ->
             // Only show the list if refresh succeeds.
             recyclerView.isVisible = loadState.source.refresh is LoadState.NotLoading
@@ -72,13 +68,10 @@ class PhotosFragment : Fragment() {
             // Toast on any error, regardless of whether it came from RemoteMediator or PagingSource
             val errorState = loadState.source.append as? LoadState.Error
                 ?: loadState.source.prepend as? LoadState.Error
-                ?: loadState.append as? LoadState.Error
-                ?: loadState.prepend as? LoadState.Error
+                ?: loadState.append as? LoadState.Error ?: loadState.prepend as? LoadState.Error
             errorState?.let {
                 Toast.makeText(
-                    activity,
-                    "\uD83D\uDE28 Wooops ${it.error}",
-                    Toast.LENGTH_LONG
+                    activity, "\uD83D\uDE28 Wooops ${it.error}", Toast.LENGTH_LONG
                 ).show()
             }
         }
